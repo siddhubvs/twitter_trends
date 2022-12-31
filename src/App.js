@@ -26,15 +26,15 @@ const rootUrl = process.env.NODE_ENV === "production" ? "https://twitter-backend
   }
   
   function handleLocation(){
-    alert('handle location')
+    alert('Location is still in development')
   }
   function listTrends() {
     return (
       <ul>
         {trends.map((trend, index) => {
           return (
-            <li key={index}>
-              <a href={trend.url}>{trend.name}</a>
+            <li key={index} >
+               <a href={trend.url}>{index+1}.  {trend.name}</a>
               </li>
           )
         })}
@@ -46,16 +46,17 @@ const rootUrl = process.env.NODE_ENV === "production" ? "https://twitter-backend
     <div className='App'>
       <header className='App-header'>
         <img src={logo} className='logo' alt='twitter' />
-        <h3>Twitter Trends</h3>
+        <h3>Most Trending Hashtags</h3>
       </header>
       <div className='menu'>
         <select name='trending-place' onChange={e=>setWoeid(e.target.value)}>
           <option value='1'>Worldwide</option>
           <option value='23424848'>India</option>
-          <option value='2459115'>New York,US</option>
-          <option value='44418'>London,UK</option>
+          <option value='2428344'>Florida</option>
+          <option value='468739'>Buenos Aires</option>
           <option value='615702'>Paris</option>
-          <option value='1105779'>Sydney,AU</option>
+          <option value='1105779'>Sydney</option>
+          <option value='638242'>Berlin</option>
         </select>
         <div className="location" onClick={handleLocation}>
         <FaCrosshairs/>
