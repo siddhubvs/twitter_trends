@@ -3,19 +3,17 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import {FaCrosshairs} from 'react-icons/fa'
-
-
-
-
 function App() {
   const [trends, setTrends] = useState([])
   const [woeid, setWoeid] = useState('1')
 
   useEffect(() => getTrends(), [woeid])
 
+const rootUrl = process.env.NODE_ENV === "production" ? "https://twitter-backend-c44k.onrender.com" : ""
+
   function getTrends() {
     axios
-      .get('/api/trends', {
+      .get(`${rootUrl}/api/trends`, {
         
         params: {
           woeid,
