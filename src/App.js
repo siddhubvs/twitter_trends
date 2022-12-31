@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import {FaCrosshairs} from 'react-icons/fa'
 
+
+
+
 function App() {
   const [trends, setTrends] = useState([])
   const [woeid, setWoeid] = useState('1')
@@ -13,6 +16,7 @@ function App() {
   function getTrends() {
     axios
       .get('/api/trends', {
+        
         params: {
           woeid,
         },
