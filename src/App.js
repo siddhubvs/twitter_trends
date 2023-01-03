@@ -28,7 +28,7 @@ const rootUrl = process.env.NODE_ENV === "production" ? "https://twitter-backend
   function handleLocation(){
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(position=>{
-           axios.get('/api/near-me',{
+           axios.get(`${rootUrl}/api/near-me`,{
             params:{
               lat: position.coords.latitude,
               long: position.coords.longitude,
