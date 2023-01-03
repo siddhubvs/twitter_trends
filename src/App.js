@@ -26,19 +26,42 @@ const rootUrl = process.env.NODE_ENV === "production" ? "https://twitter-backend
   }
   
   function handleLocation(){
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(position=>{
+           axios.get('/api/near-me',{
+            params:{
+              lat: position.coords.latitude,
+              long: position.coords.longitude,
+            },
+           }).then(response=>{
+            console.log(response.data[0])
+            setWoeid(response.data[0].woeid)
+
+          })
+           .catch(error=>console.log(error.message))
+      },(error)=>{
+        console.log(error.message)
+      })
+    }
+    else{
     alert('Location is still in development')
+    }  
   }
+
   function listTrends() {
     return (
+      
+    
       <ul>
         {trends.map((trend, index) => {
           return (
-            <li key={index} >
-               <a href={trend.url}>{index+1}.  {trend.name}</a>
-              </li>
+            <li key={index}>
+              <a href={trend.url}>{index + 1}.  {trend.name}</a>
+            </li>
           )
         })}
       </ul>
+    
     )
   }  
   
